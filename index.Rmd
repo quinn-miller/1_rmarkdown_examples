@@ -1,11 +1,12 @@
 ---
 title: "Discharge Data Example"
 author: "Matthew Ross"
-date: "1/24/2022"
+date:  "`r format(Sys.time(), '%B %d, %Y')`"
 output:
   html_document:
     toc: true
     toc_float: true
+    toc_depth: 4
 ---
 
 ```{r setup, include=FALSE}
@@ -38,7 +39,7 @@ The Poudre River at Lincoln Bridge is:
 
 ## Data Acquisition and Plotting tests
 
-## Data Download
+### Data Download
 
 
 ```{r downloader}
@@ -54,7 +55,7 @@ q <- readNWISdv(siteNumbers = '06752260',
 
 
 
-## Static Data Plotter
+### Static Data Plotter
 
 
 ```{r, warning = FALSE, fig.width = 8, fig.height = 5}
@@ -67,7 +68,7 @@ ggplot(q, aes(x = Date, y = q)) +
 ```
 
 
-## Interactive Data Plotter
+### Interactive Data Plotter
 
 
 ```{r}
@@ -84,7 +85,7 @@ dygraph(q_xts) %>%
 # Assignment. 
 
 
-This assignment will be primarily about demonstrating some expertice in using
+This assignment will be primarily about demonstrating some expertise in using
 RMarkdown, since we will be using Rmds as the primary form of homework and 
 assignments. With that in mind, your assignment for this homework is to:
 
@@ -119,8 +120,13 @@ todays date, not just a static date you enter.
 
 ## DyGraph example. 
 
+```{r}
+dygraph(q_xts) %>%
+  dyAxis("y", label = "Discharge (cfs)") %>%
+  dyOptions(drawPoints = TRUE, pointSize = 2)
+```
+
 
 ## Poudre Paragraph
 
-
-
+The **Cache la Poudre** river was named for a [supposed hidden gunpowder](https://history.fcgov.com/explore/poudre-river) cache that French trappers left near its banks in the 1820's. *Cache a la poudre* means, in French, the "hiding place of the powder. Of course, the river had a different name (many different names) before Europeans ever set foot on this continent. Among the many people that lived in this area are the tribes that are today known as the **Ute, Arapaho, Cheyenne, Lakota, Apache, and Comanche.** [Lifting Voices from the Shadows](https://poudreheritage.org/lifting-voices/) is a project that documents the history of the Poudre river corridor through Northern Arapaho women's oral histories. [Florita Soldier Wolf](https://www.youtube.com/watch?v=xVmVMgCwHU0) is one such woman. 
